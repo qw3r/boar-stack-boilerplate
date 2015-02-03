@@ -31,9 +31,16 @@ module.exports = function(gulp) {
     },
 
     test: function() {
+      var reportOptions = {
+        err: true,
+        stderr: true,
+        stdout: true
+      };
+
       return gulp.src('', {read: false})
         .pipe(plumber())
-        .pipe(exec('NODE_ENV=test node_modules/mocha/bin/mocha --reporter spec --harmony --require co-mocha "' + config.server.path + '**/*.spec.js"'));
+        .pipe(exec('NODE_ENV=test node_modules/mocha/bin/mocha --reporter spec --harmony --require co-mocha "' + config.server.path + '**/*.spec.js"'))
+        .pipe(exec.reporter(reportOptions));
     }
   }
 };
