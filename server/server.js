@@ -9,7 +9,7 @@ var app = new App(koaApp);
 app.addDynamicViewMiddleware(path.join(config.root, '/views'), config.env === 'development');
 app.addStaticContentMiddleware(path.join(config.root, '/assets'));
 app.loadControllers(path.join(config.root, 'controllers'));
-app.loadModels(path.join(config.root, 'models'));
+//app.loadModels(path.join(config.root, 'models'));
 
 
 if (!module.parent) { app.listen(config.port); }
