@@ -2,7 +2,7 @@
 
 var server = require('../../../server');
 var request = require('supertest');
-
+var expect = require('chai').expect;
 
 describe('Main Controller Index GET Action', function(){
 
@@ -11,7 +11,12 @@ describe('Main Controller Index GET Action', function(){
       .get('/')
       .expect(200)
       .expect('Content-Type', /html/)
-      .end(done);
+      .end(function(err) {
+        if (err) return done(err);
+        expect(this.renderSpy.lastCalledArgs().data).to.eql({ hello: 'world' });
+        expect(this.renderSpy.lastCalledArgs().path).to.eql('index');
+        done();
+      }.bind(this));
   });
 
 });

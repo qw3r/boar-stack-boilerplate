@@ -8,6 +8,7 @@ var App = require('./lib/app');
 var app = new App(koaApp);
 app.addDynamicViewMiddleware(path.join(config.root, '/views'), config.env === 'development');
 app.addStaticContentMiddleware(path.join(config.root, '/assets'));
+app.addHookMiddleware();
 app.loadControllers(path.join(config.root, 'controllers'));
 //app.loadModels(path.join(config.root, 'models'));
 
