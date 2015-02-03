@@ -7,7 +7,7 @@ Config.build = {
 
 Config.server = {
   path: 'server/',
-  runnable: Config.build.distPath+'server.js',
+  runnable: Config.build.distPath + 'server.js',
   filePattern: ['server/**/*', 'package.json', '!**/*.spec.*', '!**/*.mock.*']
 };
 
@@ -21,13 +21,14 @@ Config.client = {
   },
   app: {
     buildPattern: 'client/app/*.js',
+    testPattern: 'client/app/**/*.spec.js',
     watchPattern: 'client/app/**/*.js',
-    target: Config.build.assetsPath+'scripts'
+    target: Config.build.assetsPath + 'scripts'
   },
   stylesheets: {
     buildPattern: 'client/stylesheets/*.styl',
     watchPattern: 'client/stylesheets/**/*.styl',
-    target: Config.build.assetsPath+'css'
+    target: Config.build.assetsPath + 'css'
   }
 };
 
