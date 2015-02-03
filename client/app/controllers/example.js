@@ -8,6 +8,8 @@ class ExampleController {
   setVariable (value)  {
     this.variable = value;
   }
+
+  fetchFromServer() {}
 }
 
 module.exports = ExampleController;
