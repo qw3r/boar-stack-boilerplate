@@ -1,7 +1,10 @@
 'use strict';
 
-var Logger = require('./lib/logger');
+var angular = require('angular');
+var Controller = require('./controllers/example');
 
+angular
+  .module('boilerplate', [])
+  .controller('ExampleController', [Controller]);
 
-var v = new Logger();
-v.log('It is a beautiful');
+angular.bootstrap(document, ['boilerplate']);

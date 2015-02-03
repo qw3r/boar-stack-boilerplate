@@ -14,7 +14,7 @@ gulp.task('build-clean', function(cb) {
 
 gulp.task('build', ['build-clean'], function(cb) {
   runSequence([
-    'server-copy', 'client-copy', 'client-bundle'
+    'server-copy', 'client-build'
   ], cb);
 });
 

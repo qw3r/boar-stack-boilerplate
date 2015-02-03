@@ -2,7 +2,10 @@ html
   head
     link(rel="stylesheet" type="text/css" href="/css/main.css")
   body
-    button
-      |Press me
+    div(ng-controller="ExampleController as ctrl")
+      span {{ ctrl.variable }}
+      button(ng-click="ctrl.setVariable(12)")
+        | Press handle by angular
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.js")
     script(src="/scripts/example.js")
-    script(src="/scripts/second.js")
