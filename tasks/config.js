@@ -9,6 +9,9 @@ module.exports = {
   },
   client: {
     path: 'assets/',
-    filePattern: ['assets/**/*']
+    filePattern: ['assets/**/*'],
+    appPath: 'client/app',
+    appPattern: 'client/app/*.js',
+    appDistPath: 'dist/assets/scripts'
   }
 };

@@ -14,6 +14,7 @@ gulp.task('build-clean', function(cb) {
 gulp.task('build', ['build-clean'], function() {
   gulp.run('server-copy');
   gulp.run('client-copy');
+  gulp.run('client-bundle');
 });
 
 gulp.task('start', ['build'], function() {
@@ -43,3 +44,5 @@ gulp.task('client-copy-only-changed', function () { return client.copy(true); })
 gulp.task('client-watch', function() {
   gulp.watch(config.client.filePattern, ['client-copy-only-changed']);
 });
+
+gulp.task('client-bundle', function() { return client.copyApp(); });
