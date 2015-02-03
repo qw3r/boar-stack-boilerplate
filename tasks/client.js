@@ -2,10 +2,10 @@
 
 var gulpif = require('gulp-if');
 var changed = require('gulp-changed');
-var browserify = require('gulp-browserify');
-var plumber = require('gulp-plumber');
+var browserify = require('browserify');
 var argv = require('yargs').argv;
 var uglify = require('gulp-uglify');
+var transform = require('vinyl-transform');
 
 var config = require('./config');
 
@@ -17,17 +17,19 @@ module.exports = function(gulp) {
         .pipe(gulp.dest(config.build.distPath+'/assets'));
     },
 
-    copyApp : function() {
-      return gulp.src([config.client.appPattern, '!**/*.spec.*'])
-          .pipe(plumber())
-          .pipe(browserify({
-            shim: {},
-            debug: !argv.production,
-            extensions: ['.js']
-          }))
-          .pipe(gulpif(argv.production, uglify({ mangle: false })))
-          .pipe(gulp.dest(config.client.appDistPath))
-    }
+    bundle : function() {
+        var browserified = transform(function(filename) {
+            var b = browserify({
+                entries: [filename],
+                debug: !argv.production
+            });
+            return b.bundle();
+        });
 
+        return gulp.src([config.client.appEntryPattern, '!**/*.spec.*'])
+            .pipe(browserified)
+            .pipe(gulpif(argv.production, uglify({ mangle: false })))
+            .pipe(gulp.dest(config.client.appDistPath));
+    }
   }
 };

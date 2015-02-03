@@ -11,7 +11,8 @@ module.exports = {
     path: 'assets/',
     filePattern: ['assets/**/*'],
     appPath: 'client/app',
-    appPattern: 'client/app/*.js',
+    appEntryPattern: 'client/app/*.js',
+    appPattern: 'client/app/**/*.js',
     appDistPath: 'dist/assets/scripts'
   }
 };

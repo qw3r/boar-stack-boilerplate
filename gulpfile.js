@@ -41,8 +41,9 @@ gulp.task('server-test', server.test);
 // Client Tasks
 gulp.task('client-copy', function() { return client.copy(false); });
 gulp.task('client-copy-only-changed', function () { return client.copy(true); });
+gulp.task('client-bundle', function() { return client.bundle(); });
+
 gulp.task('client-watch', function() {
   gulp.watch(config.client.filePattern, ['client-copy-only-changed']);
+  gulp.watch(config.client.appPattern, ['client-bundle']);
 });
-
-gulp.task('client-bundle', function() { return client.copyApp(); });
