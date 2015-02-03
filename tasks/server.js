@@ -8,15 +8,12 @@ var plumber = require('gulp-plumber');
 
 var config = require('./config');
 
-
-
-
 module.exports = function(gulp) {
   return {
     start: function() {
       nodemon({
         script: config.server.runnable,
-        ext: 'js',
+        ext: ['js', 'jade'],
         watch: [config.build.distPath],
         ignore: ['node_modules/**'],
         delay: 1,
