@@ -10,7 +10,8 @@ app.addDynamicViewMiddleware(path.join(config.root, '/views'), config.env === 'd
 app.addStaticContentMiddleware(path.join(config.root, '/assets'));
 app.addHookMiddleware();
 app.loadControllers(path.join(config.root, 'controllers'));
-//app.loadModels(path.join(config.root, 'models'));
+app.loadModels(path.join(config.root, 'models'));
+app.connectToMongoose(config.mongooseUri);
 
 
 if (!module.parent) { app.listen(config.port); }

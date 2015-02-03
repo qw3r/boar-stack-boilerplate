@@ -19,6 +19,13 @@ describe('Admin main Controller', function () {
   });
 
 
+  it('should route GET /healthcheck to healthcheck get action', function() {
+    var controller = new MainController();
+    controller.bindRouter(routerMock);
+    expect(routerMock.get).to.have.been.calledWith('/healthcheck', 'main/actions/healthcheck/get');
+  });
+
+
   it('should route GET /list to list get action by accept type', function() {
     this.sandbox.stub(ControllerFactory, 'loadByAcceptType').returns('fromControllerFactoryLoadByAcceptType');
 
