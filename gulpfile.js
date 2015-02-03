@@ -2,6 +2,8 @@
 
 var gulp = require('gulp');
 var del = require('del');
+var runSequence = require('run-sequence');
+
 var config = require('./tasks/config');
 var server = require('./tasks/server')(gulp);
 var client = require('./tasks/client')(gulp);
@@ -11,10 +13,8 @@ gulp.task('build-clean', function(cb) {
   del([config.build.distPath + '**/*'], cb);
 });
 
-gulp.task('build', ['build-clean'], function() {
-  gulp.run('server-copy');
-  gulp.run('client-copy');
-  gulp.run('client-bundle');
+gulp.task('build', ['build-clean'], function(cb) {
+  runSequence(['server-copy', 'client-build'], cb);
 });
 
 gulp.task('start', ['build'], function() {
@@ -39,11 +39,13 @@ gulp.task('server-test', server.test);
 
 
 // Client Tasks
-gulp.task('client-copy', function() { return client.copy(false); });
-gulp.task('client-copy-only-changed', function () { return client.copy(true); });
-gulp.task('client-bundle', function() { return client.bundle(); });
+gulp.task('client-build', ['client-build-static', 'client-build-scripts', 'client-build-stylesheets']);
+gulp.task('client-build-static', function () { return client.copyStatic(); });
+gulp.task('client-build-scripts', function() { return client.buildScripts(); });
+gulp.task('client-build-stylesheets', function() { return client.buildStylesheets(); });
 
 gulp.task('client-watch', function() {
-  gulp.watch(config.client.filePattern, ['client-copy-only-changed']);
-  gulp.watch(config.client.appPattern, ['client-bundle']);
+  gulp.watch(config.client.static.watchPattern, ['client-build-static']);
+  gulp.watch(config.client.app.watchPattern, ['client-build-scripts']);
+  gulp.watch(config.client.stylesheets.watchPattern, ['client-build-scripts']);
 });
