@@ -4,6 +4,7 @@ var serve = require('koa-static');
 var path = require('path');
 var config = require('./config');
 var router = require('koa-router');
+var jade = require('koa-jade');
 
 app.use(function *(next){
   var start = new Date;
@@ -13,12 +14,15 @@ app.use(function *(next){
 });
 
 
+app.use(jade.middleware({ viewPath: path.join(config.root, '/views') }));
 app.use(serve(path.join(config.root, '/assets')));
 app.use(router(app));
 
+
 app.get('/', function *(next) {
-  this.body = 'Hello World2';
+  yield this.render('index');
 });
+
 
 
 
