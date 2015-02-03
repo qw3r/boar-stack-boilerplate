@@ -54,6 +54,11 @@ FakeContext.prototype = {
 
   setRequestBody: function(requestBody) {
     this.request.body = requestBody;
+  },
+
+
+  setParamsBody: function(paramsBody) {
+    this.params = paramsBody;
   }
 
 };
