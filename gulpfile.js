@@ -8,10 +8,6 @@ var server = require('./tasks/server')(gulp);
 var client = require('./tasks/client')(gulp);
 
 // Public Tasks
-gulp.task('build-clean', function(cb) {
-  del([config.build.distPath + '**/*'], cb);
-});
-
 gulp.task('build', ['build-clean'], function(cb) {
   runSequence([
     'server-copy', 'client-build'
@@ -25,6 +21,13 @@ gulp.task('start', ['build'], function() {
 });
 
 gulp.task('test', ['server-test', 'client-test']);
+
+
+
+// Helper
+gulp.task('build-clean', function(cb) {
+  del([config.build.distPath + '**/*'], cb);
+});
 
 
 
