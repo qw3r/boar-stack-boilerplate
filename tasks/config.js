@@ -6,5 +6,9 @@ module.exports = {
     path: 'server/',
     runnable: 'dist/server.js',
     filePattern: ['server/**/*', 'package.json', '!**/*.spec.*', '!**/*.mock.*']
+  },
+  client: {
+    path: 'assets/',
+    filePattern: ['assets/**/*']
   }
 };
