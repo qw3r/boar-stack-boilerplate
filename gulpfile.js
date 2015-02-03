@@ -20,8 +20,8 @@ gulp.task('build', ['build-clean'], function(cb) {
 
 gulp.task('start', ['build'], function() {
   gulp.run('server');
-  //gulp.run('server-watch');
-  //gulp.run('client-watch');
+  gulp.run('server-watch');
+  gulp.run('client-watch');
 });
 
 gulp.task('test', ['server-test', 'client-test']);
@@ -40,12 +40,15 @@ gulp.task('server-test', server.test);
 
 
 // Client Tasks
-gulp.task('client-copy', function() { return client.copy(false); });
-gulp.task('client-copy-only-changed', function () { return client.copy(true); });
-gulp.task('client-bundle', function() { return client.bundle(); });
+gulp.task('client-build', ['client-build-static', 'client-build-scripts', 'client-build-stylesheets']);
+gulp.task('client-build-static', function () { return client.copyStatic(); });
+gulp.task('client-build-scripts', function() { return client.buildScripts(); });
+gulp.task('client-build-stylesheets', function() { return client.buildStylesheets(); });
 
 gulp.task('client-watch', function() {
-  gulp.watch(config.client.filePattern, ['client-copy-only-changed']);
-  gulp.watch(config.client.appPattern, ['client-bundle']);
+  gulp.watch(config.client.static.watchPattern, ['client-build-static']);
+  gulp.watch(config.client.app.watchPattern, ['client-build-scripts']);
+  gulp.watch(config.client.stylesheets.watchPattern, ['client-build-scripts']);
 });
+
 gulp.task('client-test', client.test);

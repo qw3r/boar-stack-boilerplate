@@ -1,18 +1,34 @@
-module.exports = {
-  build: {
-    distPath: 'dist/'
+var Config = {};
+
+Config.build = {
+  distPath: 'dist/',
+  assetsPath: 'dist/assets/'
+};
+
+Config.server = {
+  path: 'server/',
+  runnable: Config.build.distPath+'server.js',
+  filePattern: ['server/**/*', 'package.json', '!**/*.spec.*', '!**/*.mock.*']
+};
+
+Config.client = {
+  externalSourceMap: true,
+
+  "static": {
+    copyPattern: 'client/static/**/*',
+    watchPattern: 'client/static/**/*',
+    target: Config.build.assetsPath
   },
-  server:{
-    path: 'server/',
-    runnable: 'dist/server.js',
-    filePattern: ['server/**/*', 'package.json', '!**/*.spec.*', '!**/*.mock.*']
+  app: {
+    buildPattern: 'client/app/*.js',
+    watchPattern: 'client/app/**/*.js',
+    target: Config.build.assetsPath+'scripts'
   },
-  client: {
-    path: 'assets/',
-    filePattern: ['assets/**/*'],
-    appPath: 'client/app',
-    appEntryPattern: 'client/app/*.js',
-    appPattern: 'client/app/**/*.js',
-    appDistPath: 'dist/assets/scripts'
+  stylesheets: {
+    buildPattern: 'client/stylesheets/*.styl',
+    watchPattern: 'client/stylesheets/**/*.styl',
+    target: Config.build.assetsPath+'css'
   }
 };
+
+module.exports = Config;

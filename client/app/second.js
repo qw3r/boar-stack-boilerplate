@@ -1,12 +1,8 @@
 'use strict';
 
-var angular = require('angular');
-var Controller = require('./controllers/example');
+console.log('It is beautiful feature');
 
-
-angular
-  .module('boilerplate', [])
-  .controller('ExampleController', [Controller]);
-
-
-angular.bootstrap(document, ['boilerplate']);
+document.getElementsByTagName('button')[0].onclick = function()
+{
+  alert('you pressed me');
+};

@@ -2,36 +2,53 @@
 
 var gulpif = require('gulp-if');
 var changed = require('gulp-changed');
-var browserify = require('browserify');
+var stylus = require('gulp-stylus');
 var argv = require('yargs').argv;
+var plumber = require('gulp-plumber');
+var sourcemaps = require('gulp-sourcemaps');
+var nib = require('nib');
+var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 var transform = require('vinyl-transform');
 var karma = require('karma').server;
 
-
 var config = require('./config');
+
+var isProduction = argv.production;
 
 module.exports = function(gulp) {
   return {
-    copy: function(onlyChanged) {
-      return gulp.src(config.client.filePattern)
-        .pipe(gulpif(onlyChanged, changed(config.build.distPath)))
-        .pipe(gulp.dest(config.build.distPath+'/assets'));
+    copyStatic: function() {
+      return gulp.src(config.client.static.copyPattern)
+        .pipe(gulp.dest(config.client.static.target));
     },
 
-    bundle : function() {
-        var browserified = transform(function(filename) {
-            var b = browserify({
-                entries: [filename],
-                debug: !argv.production
-            });
-            return b.bundle();
-        });
+    buildStylesheets: function() {
+      return gulp.src(config.client.stylesheets.buildPattern)
+        .pipe(plumber())
+        .pipe(gulpif(!isProduction, sourcemaps.init()))
+        .pipe(stylus({
+          use: nib(),
+          compress: isProduction
+        }))
+        .pipe(gulpif(!isProduction, sourcemaps.write(config.client.externalSourceMap ? '.' : null)))
+        .pipe(plumber.stop())
+        .pipe(gulp.dest(config.client.stylesheets.target));
+    },
 
-        return gulp.src([config.client.appEntryPattern, '!**/*.spec.*'])
-            .pipe(browserified)
-            .pipe(gulpif(argv.production, uglify({ mangle: false })))
-            .pipe(gulp.dest(config.client.appDistPath));
+    buildScripts: function() {
+      var browserified = transform(function(filename) {
+        var b = browserify({
+          entries: [filename],
+          debug: !isProduction
+        });
+        return b.bundle();
+      });
+
+      return gulp.src([config.client.app.buildPattern, '!**/*.spec.*'])
+        .pipe(browserified)
+        .pipe(gulpif(isProduction, uglify({ mangle: false })))
+        .pipe(gulp.dest(config.client.app.target));
     },
 
     test: function(done) {
@@ -40,5 +57,5 @@ module.exports = function(gulp) {
         singleRun: true
       }, done);
     }
-  }
+  };
 };
