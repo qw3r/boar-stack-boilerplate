@@ -10,6 +10,9 @@ var config = require('./../../config/index');
 var errorHandlerMiddleware = require('./middlewares/error-handler');
 var methodOverride = require('koa-methodoverride');
 var hookMiddleware = require('./middlewares/hook').getMiddleware();
+var bodyparser = require('koa-bodyparser');
+var requestId = require('koa-request-id');
+
 
 var App = function(koaApp) {
   this.koaApp = koaApp;
@@ -75,6 +78,16 @@ App.prototype = {
 
   addErrorHandlerMiddleware: function() {
     this.addMiddleware(errorHandlerMiddleware);
+  },
+
+
+  addBodyParseMiddleware: function() {
+    this.addMiddleware(bodyparser());
+  },
+
+
+  addRequestIdmiddleware: function() {
+    this.addMiddleware(requestId());
   },
 
 
