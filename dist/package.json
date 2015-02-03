@@ -5,9 +5,12 @@
   "main": "server.js",
   "dependencies": {
     "koa": "^0.16.0",
+    "koa-cors": "0.0.14",
     "koa-jade": "^0.3.1",
+    "koa-methodoverride": "^0.4.1",
     "koa-router": "^3.8.0",
-    "koa-static": "^1.4.8"
+    "koa-static": "^1.4.8",
+    "logentries-logformat": "0.0.1"
   },
   "devDependencies": {
     "co-mocha": "^1.1.0",

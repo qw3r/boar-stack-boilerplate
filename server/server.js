@@ -1,29 +1,15 @@
 var koa = require('koa');
-var app = koa();
-var serve = require('koa-static');
 var path = require('path');
+var koaApp = module.exports = koa();
 var config = require('./config');
-var router = require('koa-router');
-var jade = require('koa-jade');
-
-app.use(function *(next){
-  var start = new Date;
-  yield next;
-  var ms = new Date - start;
-  console.log('%s %s - %s', this.method, this.url, ms);
-});
+var App = require('./lib/app');
 
 
-app.use(jade.middleware({ viewPath: path.join(config.root, '/views') }));
-app.use(serve(path.join(config.root, '/assets')));
-app.use(router(app));
+var app = new App(koaApp);
+app.addDynamicViewMiddleware(path.join(config.root, '/views'), config.env === 'development');
+app.addStaticContentMiddleware(path.join(config.root, '/assets'));
+app.loadControllers(path.join(config.root, 'controllers'));
+app.loadModels(path.join(config.root, 'models'));
 
 
-app.get('/', function *(next) {
-  yield this.render('index');
-});
-
-
-
-
-app.listen(3000);
+if (!module.parent) { app.listen(config.port); }
