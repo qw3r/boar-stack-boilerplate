@@ -23,7 +23,7 @@ gulp.task('start', ['build'], function() {
   gulp.run('client-watch');
 });
 
-gulp.task('test', ['server-test']);
+gulp.task('test', ['server-test', 'client-test']);
 
 
 
@@ -47,3 +47,4 @@ gulp.task('client-watch', function() {
   gulp.watch(config.client.filePattern, ['client-copy-only-changed']);
   gulp.watch(config.client.appPattern, ['client-bundle']);
 });
+gulp.task('client-test', client.test);

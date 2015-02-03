@@ -6,6 +6,8 @@ var browserify = require('browserify');
 var argv = require('yargs').argv;
 var uglify = require('gulp-uglify');
 var transform = require('vinyl-transform');
+var karma = require('karma').server;
+
 
 var config = require('./config');
 
@@ -30,6 +32,13 @@ module.exports = function(gulp) {
             .pipe(browserified)
             .pipe(gulpif(argv.production, uglify({ mangle: false })))
             .pipe(gulp.dest(config.client.appDistPath));
+    },
+
+    test: function(done) {
+      karma.start({
+        configFile: __dirname + '/../karma.conf.js',
+        singleRun: true
+      }, done);
     }
   }
 };
