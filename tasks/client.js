@@ -10,6 +10,7 @@ var nib = require('nib');
 var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 var transform = require('vinyl-transform');
+var karma = require('karma').server;
 
 var config = require('./config');
 
@@ -48,6 +49,13 @@ module.exports = function(gulp) {
         .pipe(browserified)
         .pipe(gulpif(isProduction, uglify({ mangle: false })))
         .pipe(gulp.dest(config.client.app.target));
+    },
+
+    test: function(done) {
+      karma.start({
+        configFile: __dirname + '/../karma.conf.js',
+        singleRun: true
+      }, done);
     }
   };
 };

@@ -23,7 +23,7 @@ gulp.task('start', ['build'], function() {
   gulp.run('client-watch');
 });
 
-gulp.task('test', ['server-test']);
+gulp.task('test', ['server-test', 'client-test']);
 
 
 
@@ -49,3 +49,5 @@ gulp.task('client-watch', function() {
   gulp.watch(config.client.app.watchPattern, ['client-build-scripts']);
   gulp.watch(config.client.stylesheets.watchPattern, ['client-build-scripts']);
 });
+
+gulp.task('client-test', client.test);
