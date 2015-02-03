@@ -5,8 +5,12 @@
   "main": "server.js",
   "browserify": {
     "transform": [
-      "6to5ify"
+      "6to5ify",
+      "browserify-shim"
     ]
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
   },
   "dependencies": {
     "koa": "^0.16.0",
@@ -24,7 +28,9 @@
     "supertest": "^0.15.0"
   },
   "devDependencies": {
+    "angular": "^1.3.11",
     "browserify": "^8.1.3",
+    "browserify-shim": "^3.8.2",
     "chai": "^1.10.0",
     "chai-as-promised": "^4.1.1",
     "chai-subset": "^0.3.0",

@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var del = require('del');
+var runSequence = require('run-sequence');
 var config = require('./tasks/config');
 var server = require('./tasks/server')(gulp);
 var client = require('./tasks/client')(gulp);
@@ -11,16 +12,16 @@ gulp.task('build-clean', function(cb) {
   del([config.build.distPath + '**/*'], cb);
 });
 
-gulp.task('build', ['build-clean'], function() {
-  gulp.run('server-copy');
-  gulp.run('client-copy');
-  gulp.run('client-bundle');
+gulp.task('build', ['build-clean'], function(cb) {
+  runSequence([
+    'server-copy', 'client-copy', 'client-bundle'
+  ], cb);
 });
 
 gulp.task('start', ['build'], function() {
   gulp.run('server');
-  gulp.run('server-watch');
-  gulp.run('client-watch');
+  //gulp.run('server-watch');
+  //gulp.run('client-watch');
 });
 
 gulp.task('test', ['server-test', 'client-test']);
