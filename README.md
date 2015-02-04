@@ -1,6 +1,13 @@
 # js-boilerplate
 
-#How to run tests from command line
+
+# How to start the project for developing
+- gulp start
+
+# How to create a build for deployment
+- gulp build
+
+# How to run tests from command line
 - only client side tests - 'gulp client-test'
 - only server side tests - 'gulp server-test'
 - every tests - 'gulp test'
