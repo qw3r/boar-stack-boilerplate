@@ -13,12 +13,14 @@
 - every tests - 'gulp test'
 
 # How to run client side tests on phpstorm
+- Install NodeJS and Karma plugins in PhpStorm
 - run / edit configurations / add karma
-- set configuration file (project's main directory and karma.conf.js (/js-boilerplate/karma.conf.js)
-- set node interpreter (/.nvm/v0.11.14/bin/node)
-- set karma package (project's main directory and node_modules/karma - /js-boilerplate/node_modules/karma)
+- set configuration file (e.g.: /js-boilerplate/karma.conf.js)
+- set node interpreter (e.g.: ~/.nvm/v0.11.14/bin/node)
+- set karma package (e.g.: /js-boilerplate/node_modules/karma)
 
 # How to run server side tests on phpstorm
+- Install NodeJS plugin in PhpStorm
 - run / edit configurations / add mocha
 - set node interpreter (/.nvm/v0.11.14/bin/node) 
 - set node options (--harmony)
