@@ -51,7 +51,7 @@ gulp.task('client-build-stylesheets', function() { return client.buildStylesheet
 gulp.task('client-watch', function() {
   gulp.watch(config.client.static.watchPattern, ['client-build-static']);
   gulp.watch(config.client.app.watchPattern, ['client-build-scripts']);
-  gulp.watch(config.client.stylesheets.watchPattern, ['client-build-scripts']);
+  gulp.watch(config.client.stylesheets.watchPattern, ['client-build-stylesheets']);
 });
 
 gulp.task('client-test', client.test);
