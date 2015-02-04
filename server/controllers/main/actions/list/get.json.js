@@ -2,6 +2,8 @@
 
 module.exports = function* () {
 
-  this.body = { error: false };
+  this.body = {
+    admins: ['superman', 'batman', 'aquaman', 'flash']
+  };
 
 };

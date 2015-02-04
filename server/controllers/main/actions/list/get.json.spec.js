@@ -15,7 +15,7 @@ describe('Main Controller List GET JSON Action', function(){
       .end(function(err, res) {
         if (err) return done(err);
         expect(res.body).to.eql({
-          error: false
+          admins: ['superman', 'batman', 'aquaman', 'flash']
         });
         done();
       }.bind(this));
