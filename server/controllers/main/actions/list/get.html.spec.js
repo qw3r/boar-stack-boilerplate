@@ -18,32 +18,11 @@ describe('Main Controller List GET HTML Action', function(){
         .expect('Content-Type', /html/)
         .end(function(err) {
           if (err) return done(err);
-          expect(this.renderSpy.lastCalledArgs().data).to.eql({ hello: 'papaja' });
-          expect(this.renderSpy.lastCalledArgs().path).to.eql('index');
+          expect(this.renderSpy.lastCalledArgs().path).to.eql('list');
           done();
         }.bind(this));
     });
 
   });
-
-
-  describe('Action test', function() {
-
-    it('should render the proper jade with proper data', function* () {
-      var context = FakeContext.create();
-      var requestBody = {
-        fromRequestBody: 'yo'
-      };
-
-      context.setParamsBody(requestBody);
-
-      yield ListHtmlAction.call(context);
-
-      expect(context.getLastRenderPath()).to.eql('index');
-      expect(context.getLastRenderData()).to.eql({ hello: 'papajayo' });
-    });
-
-  });
-
 
 });

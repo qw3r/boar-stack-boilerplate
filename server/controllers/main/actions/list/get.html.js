@@ -6,7 +6,6 @@ var logger = require('logentries-logformat')('main');
 
 var GetListAction = function(context) {
   this.context = context;
-  this.params = context.params;
   this.request = context.request;
 };
 
@@ -14,12 +13,9 @@ var GetListAction = function(context) {
 GetListAction.prototype = {
 
   process: function* () {
-    var message = 'papaja';
-    if (this.params && this.params.fromRequestBody) message += this.params.fromRequestBody;
+    logger.log('getList', { userIp: realIpAddress(this.request) });
 
-    logger.log('mainActionUsed', { userIp: realIpAddress(this.request) });
-
-    yield this.context.render('index', { hello: message });
+    yield this.context.render('list');
   }
 
 };
