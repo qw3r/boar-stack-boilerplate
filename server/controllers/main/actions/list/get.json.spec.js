@@ -1,24 +1,22 @@
 'use strict';
 
 var server = require('../../../../server');
-var request = require('supertest');
 var expect = require('chai').expect;
+var FakeContext = require('../../../../lib/app/context.mock.js');
+var GetListJsonAction = require('./get.json');
 
 describe('Main Controller List GET JSON Action', function(){
 
-  it('should respond with proper response code and response format', function(done) {
-    request(server.listen())
-      .get('/list')
-      .set('Accept', 'application/json')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(function(err, res) {
-        if (err) return done(err);
-        expect(res.body).to.eql({
-          admins: ['superman', 'batman', 'aquaman', 'flash']
-        });
-        done();
-      }.bind(this));
+  it('should respond with the admins', function* () {
+
+    var context = FakeContext.create();
+
+    yield GetListJsonAction.call(context);
+
+    expect(context.body).to.eql({
+      admins: ['superman', 'batman', 'aquaman', 'flash']
+    });
+
   });
 
 });
