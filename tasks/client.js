@@ -1,7 +1,6 @@
 'use strict';
 
 var gulpif = require('gulp-if');
-var changed = require('gulp-changed');
 var stylus = require('gulp-stylus');
 var argv = require('yargs').argv;
 var plumber = require('gulp-plumber');
@@ -11,6 +10,8 @@ var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 var transform = require('vinyl-transform');
 var karma = require('karma').server;
+var Q = require('q');
+var fs = require('fs');
 
 var config = require('./config');
 
@@ -21,6 +22,28 @@ module.exports = function(gulp) {
     copyStatic: function() {
       return gulp.src(config.client.static.copyPattern)
         .pipe(gulp.dest(config.client.static.target));
+    },
+
+    copyVendor: function() {
+      var deferred = Q.defer();
+
+      config.client.static.vendors.forEach(function(moduleName)
+      {
+        var sourcePath = 'node_modules/'+moduleName;
+
+        if (fs.existsSync(sourcePath+'/dist')) {
+          sourcePath += '/dist';
+        }
+
+        sourcePath += '/**/*';
+
+        var stream = gulp.src(sourcePath)
+          .pipe(gulp.dest(config.client.static.target + '/' + moduleName));
+
+        deferred.resolve(stream);
+      });
+
+      return deferred.promise;
     },
 
     buildStylesheets: function() {
