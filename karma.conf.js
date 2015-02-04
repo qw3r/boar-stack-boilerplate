@@ -3,7 +3,11 @@ var _ = require('lodash');
 
 module.exports = function(config) {
   var configHash = {
-    files: [taskConfig.client.app.testPattern],
+    files: [
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      taskConfig.client.app.testPattern
+    ],
     preprocessors: {}
   };
 

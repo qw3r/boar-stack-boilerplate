@@ -2,9 +2,11 @@ extends layout
 
 block body
   div(ng-controller="ExampleController as ctrl")
-    span {{ ctrl.variable }}
-    button(ng-click="ctrl.setVariable(12)")
+    span {{ ctrl.someVariable }}
+    button(ng-click="ctrl.setSomeVariable(12)")
       | Press handle by angular
+    button(ng-click="ctrl.fetchFromServer()")
+      | Fetch from server
 
 block body_bottom
   script(src="/scripts/example.js")
