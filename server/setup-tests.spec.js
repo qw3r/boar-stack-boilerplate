@@ -1,7 +1,7 @@
 'use strict';
 
 var sinon = require('sinon');
-var renderSpy = require('./lib/app/render.mock');
+var renderSpy = require('js-stack').mocks.render;
 
 
 before(function() {

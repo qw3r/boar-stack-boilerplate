@@ -25,7 +25,8 @@
     "logentries-logformat": "git://github.com/emartech/logentries-logformat.git",
     "mongoose": "^3.8.22",
     "moment": "^2.9.0",
-    "supertest": "^0.15.0"
+    "supertest": "^0.15.0",
+    "js-stack": "git://github.com/emartech/js-stack.git"
   },
   "devDependencies": {
     "6to5ify": "^4.0.0",

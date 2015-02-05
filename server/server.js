@@ -2,7 +2,7 @@ var koa = require('koa');
 var path = require('path');
 var koaApp = module.exports = koa();
 var config = require('./config');
-var App = require('./lib/app');
+var App = require('js-stack').app;
 
 
 var app = new App(koaApp);
