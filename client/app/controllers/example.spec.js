@@ -21,23 +21,31 @@ describe('ExampleController', () => {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('should initiate someVariable with value 5', () => {
-        expect(exampleCtrl.someVariable).to.eql(5);
+
+    it('should initiate users with value 5', () => {
+        expect(exampleCtrl.users).to.eql(['Adam', 'Peti', 'Sonic', 'Viktor']);
     });
 
-    it('should fetch someVariable from server', () => {
-        httpRespondWith(200, [1,2,3]);
+
+    it('should initiate error with false', () => {
+        expect(exampleCtrl.error).to.be.false;
+    });
+
+
+    it('should fetch users from server', () => {
+        httpRespondWith(200, ['Superman', 'Batman']);
         exampleCtrl.fetchFromServer();
         $httpBackend.flush();
 
-        expect(exampleCtrl.someVariable).to.eql([1,2,3]);
+        expect(exampleCtrl.users).to.eql(['Superman', 'Batman']);
     });
 
-    it('should reset someVariable to value 0 if fetch from server fails', () => {
+
+    it('should set error to true if fetch from server fails', () => {
         httpRespondWith(500, {error: 'internal error occured'});
         exampleCtrl.fetchFromServer();
         $httpBackend.flush();
 
-        expect(exampleCtrl.someVariable).to.eql(0);
+        expect(exampleCtrl.error).to.be.true;
     });
 });
