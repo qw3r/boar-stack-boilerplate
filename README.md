@@ -16,7 +16,7 @@ We'll use the following technologies in JavaScript projects (other type of proje
 - Client framework: [AngularJS](https://angularjs.org)
 - UI framework: latest [Bootstrap](http://getbootstrap.com) (currently v3.3.x)
 - Dropdown component: [Select2](https://select2.github.io)
-- Client side dependancy manager: we use [npm](https://www.npmjs.com) where possible
+- Client side dependency manager: we use [npm](https://www.npmjs.com) where possible
 - Test framework: [Mocha](http://mochajs.org)
 - End-to-end test framework: [Protractor](http://angular.github.io/protractor/)
 
