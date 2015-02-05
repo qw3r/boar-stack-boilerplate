@@ -108,11 +108,11 @@ Configuring PHPStorm
 
 Configuring Server Side
 -----------------------
+### How to start your app
+
 - Connect to mongoose with `app.connectToMongoose(config.mongooseUri);`
 - Add Jade rendering with `app.addDynamicViewMiddleware('viewPath', cache);`
 - Serving the static contents with `app.addStaticContentMiddleware(path.join(config.root, '/assets'));`
 - Prepare for render mock with `app.addHookMiddleware();`
 - Load controllers with `app.loadControllers(path.join(config.root, 'controllers'));`
 - Load mongoose models with `app.loadModels(path.join(config.root, 'models'));`
-  
-
