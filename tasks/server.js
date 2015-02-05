@@ -36,7 +36,7 @@ module.exports = function(gulp) {
 
       return gulp.src('', {read: false})
         .pipe(plumber())
-        .pipe(exec('NODE_ENV=test node_modules/mocha/bin/mocha --reporter spec --harmony --require co-mocha "' + config.server.path + '**/*.spec.js"'))
+        .pipe(exec('NODE_ENV=test node_modules/mocha/bin/mocha --reporter dot --harmony --colors --require co-mocha "' + config.server.path + '**/*.spec.js"'))
         .pipe(exec.reporter(reportOptions));
     }
   }

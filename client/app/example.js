@@ -5,6 +5,6 @@ var Controller = require('./controllers/example');
 
 angular
   .module('boilerplate', [])
-  .controller('ExampleController', [Controller]);
+  .controller('ExampleController', ['$http', Controller]);
 
 angular.bootstrap(document, ['boilerplate']);
