@@ -104,3 +104,15 @@ Configuring PHPStorm
   -  set mocha package: _main directory_ and _mocha module_ (`/js-boilerplate/node_modules/mocha`)
   -  set extra mocha options: `-r co-mocha`
   -  set test directory: _main directory_ and _server_ (`/js-boilerplate/server`)
+  
+
+Configuring Server Side
+-----------------------
+- Connect to mongoose with `app.connectToMongoose(config.mongooseUri);`
+- Add Jade rendering with `app.addDynamicViewMiddleware('viewPath', cache);`
+- Serving the static contents with `app.addStaticContentMiddleware(path.join(config.root, '/assets'));`
+- Prepare for render mock with `app.addHookMiddleware();`
+- Load controllers with `app.loadControllers(path.join(config.root, 'controllers'));`
+- Load mongoose models with `app.loadModels(path.join(config.root, 'models'));`
+  
+
