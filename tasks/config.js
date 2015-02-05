@@ -17,18 +17,19 @@ Config.client = {
   "static": {
     copyPattern: 'client/static/**/*',
     watchPattern: 'client/static/**/*',
-    target: Config.build.assetsPath
+    target: Config.build.assetsPath,
+    vendors: ['bootstrap', 'angular']
   },
   app: {
     buildPattern: 'client/app/*.js',
     testPattern: 'client/app/**/*.spec.js',
     watchPattern: 'client/app/**/*.js',
-    target: Config.build.assetsPath + 'scripts'
+    target: Config.build.assetsPath + 'scripts/'
   },
   stylesheets: {
     buildPattern: 'client/stylesheets/*.styl',
     watchPattern: 'client/stylesheets/**/*.styl',
-    target: Config.build.assetsPath + 'css'
+    target: Config.build.assetsPath + 'css/'
   }
 };
 

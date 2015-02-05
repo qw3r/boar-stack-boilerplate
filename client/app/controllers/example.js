@@ -1,15 +1,20 @@
 "use strict";
 
 class ExampleController {
-  constructor () {
-    this.variable = 5;
+  constructor ($http) {
+    this.someVariable = 5;
+    this.$http = $http;
   }
 
-  setVariable (value)  {
-    this.variable = value;
+  setSomeVariable (value)  {
+    this.someVariable = value;
   }
 
-  fetchFromServer() {}
+  fetchFromServer() {
+    this.$http.get('/list', {headers: {Accept: 'application/json'}})
+      .success((data) => {this.someVariable = data;})
+      .error(() => this.someVariable = 0);
+  }
 }
 
 module.exports = ExampleController;
