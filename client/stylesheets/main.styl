@@ -17,3 +17,29 @@ html
 
 .body
   margin: $pageLeftMargin $pageLeftMargin 50px
+
+.users
+  margin: 0
+  padding: 0
+
+.user
+  display: inline-block
+  width: 150px
+  height: 150px
+  text-align: center
+
+  .name
+    margin-top: 5px
+
+  &.ng-enter,
+  &.ng-leave
+    transition:0.5s linear all
+
+  &.ng-enter
+    position: absolute
+    top: 500px
+
+  &.ng-enter.ng-enter-active
+    position: absolute
+    top: 500px
+

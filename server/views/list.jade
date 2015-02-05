@@ -2,11 +2,15 @@ extends layout
 
 block body
   div(ng-controller="ExampleController as ctrl")
-    ul
-      li(ng-repeat="user in ctrl.users") {{ user }}
+    h1 created by
 
-    .btn-group
-      button.btn.btn-default(ng-click="ctrl.fetchFromServer()") Fetch heroes from server
+    ul.users
+      li.user(ng-repeat="user in ctrl.users")
+        img(ng-src="{{ ::user.img }}")
+        .name {{ ::user.name }}
+
+    .btn-group(ng-if="!ctrl.users")
+      button.btn.btn-default(ng-click="ctrl.fetchFromServer()") Fetch from server
 
 block body_bottom
   script(src="/scripts/example.js")

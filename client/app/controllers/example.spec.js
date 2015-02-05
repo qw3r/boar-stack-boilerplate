@@ -3,6 +3,7 @@
 var ExampleCtr = require('./example');
 
 describe('ExampleController', () => {
+
     var exampleCtrl, $http, $httpBackend;
 
     var httpRespondWith = (status, data) => $httpBackend.when('GET', '/list').respond(status, data);
@@ -22,8 +23,8 @@ describe('ExampleController', () => {
     });
 
 
-    it('should initiate users with value 5', () => {
-        expect(exampleCtrl.users).to.eql(['Adam', 'Peti', 'Sonic', 'Viktor']);
+    it('should initiate users with empty array', () => {
+        expect(exampleCtrl.users).to.be.null;
     });
 
 
@@ -33,7 +34,7 @@ describe('ExampleController', () => {
 
 
     it('should fetch users from server', () => {
-        httpRespondWith(200, ['Superman', 'Batman']);
+        httpRespondWith(200, { admins: ['Superman', 'Batman'] });
         exampleCtrl.fetchFromServer();
         $httpBackend.flush();
 

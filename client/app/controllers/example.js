@@ -3,7 +3,7 @@
 class ExampleController {
 
   constructor ($http) {
-    this.users = ['Adam', 'Peti', 'Sonic', 'Viktor'];
+    this.users = null;
     this.error = false;
     this.$http = $http;
   }
@@ -13,7 +13,7 @@ class ExampleController {
     this.error = false;
 
     this.$http.get('/list', { headers: { Accept: 'application/json' } })
-      .success((data) => { this.users = data.admins; })
+      .success((data) => { this.users = data.admins;})
       .error(() => this.error = true);
   }
 }
