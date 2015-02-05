@@ -18,7 +18,7 @@
     "koa": "^0.16.0",
     "koa-router": "^3.8.0",
     "lodash": "^3.0.1",
-    "logentries-logformat": "git://github.com/emartech/logentries-logformat.git",
+    "logentries-logformat": "^0.0.2",
     "moment": "^2.9.0",
     "js-stack": "^0.0.1",
     "mongoose": "^3.8.22"
