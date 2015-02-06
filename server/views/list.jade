@@ -6,7 +6,7 @@ block body
 
     ul.users
       li.user(ng-repeat="user in ctrl.users")
-        img(ng-src="{{ ::user.img }}")
+        img(ng-src="/images/{{ ::user.img }}")
         .name {{ ::user.name }}
 
     .btn-group(ng-if="!ctrl.users")

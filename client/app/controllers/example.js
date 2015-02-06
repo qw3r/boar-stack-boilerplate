@@ -12,7 +12,7 @@ class ExampleController {
   fetchFromServer() {
     this.error = false;
 
-    this.$http.get('/list', { headers: { Accept: 'application/json' } })
+    this.$http.get('/list')
       .success((data) => { this.users = data.admins;})
       .error(() => this.error = true);
   }
