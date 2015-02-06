@@ -69,6 +69,7 @@ module.exports = function(gulp) {
       });
 
       return gulp.src([config.client.app.buildPattern, '!**/*.spec.*'])
+        .pipe(plumber())
         .pipe(browserified)
         .pipe(gulpif(isProduction, uglify({ mangle: false })))
         .pipe(gulp.dest(config.client.app.target));
