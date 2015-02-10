@@ -13,9 +13,10 @@ var karma = require('karma').server;
 var Q = require('q');
 var fs = require('fs');
 var through2 = require('through2');
+var concat = require('gulp-concat');
 
 var config = require('./config');
-var vendors = require('../client/app/vendors');
+var vendors = require('../client/vendors');
 
 var isProduction = argv.production;
 
@@ -89,6 +90,13 @@ module.exports = function(gulp) {
                   next(null, file);
                 });
           }))
+          .pipe(gulp.dest(config.client.app.target));
+    },
+
+    concatVendors: function() {
+      return gulp.src(config.client.vendors)
+          .pipe(plumber())
+          .pipe(concat('vendors.js'))
           .pipe(gulp.dest(config.client.app.target));
     },
 
