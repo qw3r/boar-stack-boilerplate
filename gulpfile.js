@@ -6,6 +6,7 @@ var runSequence = require('run-sequence');
 var config = require('./tasks/config');
 var server = require('./tasks/server')(gulp);
 var client = require('./tasks/client')(gulp);
+var e2e = require('./tasks/e2e')(gulp);
 
 // Public Tasks
 gulp.task('build', ['build-clean'], function(cb) {
@@ -62,3 +63,7 @@ gulp.task('client-watch', function() {
 });
 
 gulp.task('client-test', client.test);
+
+// End to End Tasks
+gulp.task('e2e-test', e2e.test);
+gulp.task('update-webdriver', e2e.updateWebDriver);
