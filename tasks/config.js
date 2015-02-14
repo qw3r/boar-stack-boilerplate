@@ -8,7 +8,7 @@ Config.build = {
 Config.server = {
   path: 'server/',
   runnable: Config.build.distPath + 'server.js',
-  filePattern: ['server/**/*', 'package.json', '!**/*.spec.*', '!**/*.mock.*']
+  filePattern: ['server/**/*.js', 'package.json', '!**/*.spec.js', '!**/*.mock.js']
 };
 
 Config.client = {
@@ -18,7 +18,7 @@ Config.client = {
     copyPattern: 'client/static/**/*',
     watchPattern: 'client/static/**/*',
     target: Config.build.assetsPath,
-    vendors: ['bootstrap', 'angular']
+    vendors: ['angular']
   },
   app: {
     buildPattern: 'client/app/*.js',

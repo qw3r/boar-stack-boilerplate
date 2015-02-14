@@ -47,13 +47,11 @@ gulp.task('server-test', server.test);
 gulp.task('client-build', [
   'client-build-static',
   'client-build-vendor',
-  'client-build-vendor-concat',
   'client-build-scripts',
   'client-build-stylesheets'
 ]);
 gulp.task('client-build-static', function () { return client.copyStatic(); });
-gulp.task('client-build-vendor', function() { return client.copyVendor(); });
-gulp.task('client-build-vendor-concat', function() { return client.concatVendors(); });
+gulp.task('client-build-vendor', function() { return client.concatVendors(); });
 gulp.task('client-build-vendor-alt', function() { return client.buildVendors(); });
 gulp.task('client-build-scripts', function() { return client.buildScripts(); });
 gulp.task('client-build-stylesheets', function() { return client.buildStylesheets(); });

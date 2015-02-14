@@ -10,8 +10,6 @@ var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 var transform = require('vinyl-transform');
 var karma = require('karma').server;
-var Q = require('q');
-var fs = require('fs');
 var through2 = require('through2');
 var concat = require('gulp-concat');
 
@@ -25,28 +23,6 @@ module.exports = function(gulp) {
     copyStatic: function() {
       return gulp.src(config.client.static.copyPattern)
         .pipe(gulp.dest(config.client.static.target));
-    },
-
-    copyVendor: function() {
-      var deferred = Q.defer();
-
-      config.client.static.vendors.forEach(function(moduleName)
-      {
-        var sourcePath = 'node_modules/'+moduleName;
-
-        if (fs.existsSync(sourcePath+'/dist')) {
-          sourcePath += '/dist';
-        }
-
-        sourcePath += '/**/*';
-
-        var stream = gulp.src(sourcePath)
-          .pipe(gulp.dest(config.client.static.target + '/' + moduleName));
-
-        deferred.resolve(stream);
-      });
-
-      return deferred.promise;
     },
 
     buildStylesheets: function() {
@@ -97,6 +73,7 @@ module.exports = function(gulp) {
       return gulp.src(config.client.vendors)
           .pipe(plumber())
           .pipe(concat('vendors.js'))
+          .pipe(gulpif(isProduction, uglify({ mangle: false })))
           .pipe(gulp.dest(config.client.app.target));
     },
 
