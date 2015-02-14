@@ -8,7 +8,7 @@ Config.build = {
 Config.server = {
   path: 'server/',
   runnable: Config.build.distPath + 'server.js',
-  filePattern: ['server/**/*.js', 'package.json', '!**/*.spec.js', '!**/*.mock.js']
+  filePattern: ['server/**/!(*.spec).js']
 };
 
 Config.client = {
