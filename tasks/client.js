@@ -47,7 +47,7 @@ module.exports = function(gulp) {
         return b.bundle();
       });
 
-      return gulp.src([config.client.app.buildPattern, '!**/*.spec.*'])
+      return gulp.src([config.client.app.buildPattern])
         .pipe(plumber())
         .pipe(browserified)
         .pipe(gulpif(isProduction, uglify({ mangle: false })))
@@ -55,7 +55,7 @@ module.exports = function(gulp) {
     },
 
     buildVendors: function() {
-      return gulp.src([config.client.app.vendorPattern, '!**/*.spec.*'])
+      return gulp.src([config.client.app.vendorPattern])
           .pipe(plumber())
           .pipe(through2.obj(function (file, enc, next){
             browserify(file.path)

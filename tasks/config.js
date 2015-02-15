@@ -8,7 +8,7 @@ Config.build = {
 Config.server = {
   path: 'server/',
   runnable: Config.build.distPath + 'server.js',
-  filePattern: ['server/**/!(*.spec).js']
+  filePattern: ['server/**/!(*.spec).{jade,js}']
 };
 
 Config.client = {
@@ -21,7 +21,7 @@ Config.client = {
     vendors: ['angular']
   },
   app: {
-    buildPattern: 'client/app/*.js',
+    buildPattern: 'client/app/!(*.spec).js',
     testPattern: 'client/app/**/*.spec.js',
     watchPattern: 'client/app/**/*.js',
     vendorPattern: 'client/vendors.js',
