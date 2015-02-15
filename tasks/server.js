@@ -13,10 +13,10 @@ module.exports = function(gulp) {
     start: function() {
       nodemon({
         script: config.server.runnable,
-        ext: ['js', 'jade'],
+        ext: 'js jade',
         watch: [config.build.distPath],
-        ignore: ['node_modules/**'],
         delay: 1,
+        env: { 'NODE_ENV': 'development' },
         nodeArgs: ['--harmony']
       });
     },
