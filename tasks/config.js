@@ -24,6 +24,7 @@ Config.client = {
     buildPattern: 'client/app/!(*.spec).js',
     testPattern: 'client/app/**/*.spec.js',
     watchPattern: 'client/app/**/*.js',
+    viewPattern: 'client/app/views/**/*.jade',
     vendorPattern: 'client/vendors.js',
     target: Config.build.assetsPath + 'scripts/'
   },

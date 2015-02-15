@@ -48,13 +48,15 @@ gulp.task('client-build', [
   'client-build-static',
   'client-build-vendor',
   'client-build-scripts',
-  'client-build-stylesheets'
+  'client-build-stylesheets',
+  'client-build-views'
 ]);
 gulp.task('client-build-static', function () { return client.copyStatic(); });
 gulp.task('client-build-vendor', function() { return client.concatVendors(); });
 gulp.task('client-build-vendor-alt', function() { return client.buildVendors(); });
 gulp.task('client-build-scripts', function() { return client.buildScripts(); });
 gulp.task('client-build-stylesheets', function() { return client.buildStylesheets(); });
+gulp.task('client-build-views', function() { return client.buildViews(); });
 
 gulp.task('client-watch', function() {
   gulp.watch(config.client.static.watchPattern, ['client-build-static']);
