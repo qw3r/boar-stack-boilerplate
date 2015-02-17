@@ -30,7 +30,7 @@ module.exports = function (gulp) {
 
     test: function () {
       var reportOptions = {
-        err: true,
+        err: false,
         stderr: true,
         stdout: true
       };
