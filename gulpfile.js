@@ -35,7 +35,10 @@ gulp.task('build-clean', function(cb) {
 // Server Tasks
 gulp.task('server', server.start);
 gulp.task('server-copy', function() { return server.copy(false); });
-gulp.task('server-copy-only-changed', function () { return server.copy(true); });
+gulp.task('server-copy-only-changed', function () {
+  return server.copy(true);
+});
+gulp.task('server-jshint', function() { return client.jshint(); });
 gulp.task('server-watch', function() {
   gulp.watch(config.server.filePattern, ['server-copy-only-changed']);
 });
@@ -57,6 +60,7 @@ gulp.task('client-build-vendor-alt', function() { return client.buildVendors(); 
 gulp.task('client-build-scripts', function() { return client.buildScripts(); });
 gulp.task('client-build-stylesheets', function() { return client.buildStylesheets(); });
 gulp.task('client-build-views', function() { return client.buildViews(); });
+gulp.task('client-jshint', function() { return client.jshint(); });
 
 gulp.task('client-watch', function() {
   gulp.watch(config.client.static.watchPattern, ['client-build-static']);

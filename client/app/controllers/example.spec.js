@@ -6,7 +6,8 @@ describe('ExampleController', () => {
 
     var exampleCtrl, $http, $httpBackend;
 
-    var httpRespondWith = (status, data) => $httpBackend.when('GET', '/list').respond(status, data);
+    var httpRespondWith =
+      (status, data) => $httpBackend.when('GET', '/list').respond(status, data);
 
     beforeEach(inject(($injector) => {
         $http = $injector.get('$http');
