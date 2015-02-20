@@ -16,12 +16,11 @@ var jade = require('gulp-jade');
 var jshint = require('gulp-jshint');
 var templateCache = require('gulp-angular-templatecache');
 
-var config = require('./config');
 var vendors = require('../client/vendors');
 
 var isProduction = argv.production;
 
-module.exports = function (gulp) {
+module.exports = function (gulp, config) {
   return {
     copyStatic: function () {
       return gulp.src(config.client.static.copyPattern)

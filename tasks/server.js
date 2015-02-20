@@ -7,9 +7,7 @@ var exec = require('gulp-exec');
 var plumber = require('gulp-plumber');
 var jshint = require('gulp-jshint');
 
-var config = require('./config');
-
-module.exports = function (gulp) {
+module.exports = function (gulp, config) {
   return {
     start: function () {
       nodemon({

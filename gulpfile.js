@@ -4,9 +4,9 @@ var gulp = require('gulp');
 var del = require('del');
 var runSequence = require('run-sequence');
 var config = require('./tasks/config');
-var server = require('./tasks/server')(gulp);
-var client = require('./tasks/client')(gulp);
-var e2e = require('./tasks/e2e')(gulp);
+var server = require('./tasks/server')(gulp, config);
+var client = require('./tasks/client')(gulp, config);
+var e2e = require('./tasks/e2e')(gulp, config);
 
 // Public Tasks
 gulp.task('build', ['build-clean'], function(cb) {
