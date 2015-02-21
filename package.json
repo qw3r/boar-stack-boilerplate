@@ -2,7 +2,7 @@
   "name": "js-boilerplate",
   "version": "0.0.1",
   "description": "",
-  "main": "server.js",
+  "main": "./index.js",
   "browserify": {
     "transform": [
       "6to5ify",
@@ -13,8 +13,6 @@
     "angular": "global:angular"
   },
   "dependencies": {
-    "lodash": "^3.0.1",
-    "merge": "^1.2.0",
     "6to5ify": "^4.0.0",
     "browserify": "^8.1.3",
     "browserify-shim": "^3.8.2",
@@ -42,7 +40,10 @@
     "karma-browserify": "^3.0.1",
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
+    "lodash": "^3.0.1",
+    "merge": "^1.2.0",
     "mocha": "^2.0.1",
+    "nib": "^1.1.0",
     "protractor": "^1.6.1",
     "run-sequence": "^1.0.2",
     "through2": "^0.6.3",
@@ -72,7 +73,6 @@
     "type": "git",
     "url": "https://github.com/emartech/js-boilerplate.git"
   },
-  "main": "./index.js",
   "author": "",
   "license": "ISC",
   "bugs": {
