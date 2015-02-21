@@ -42,13 +42,9 @@
     "karma-browserify": "^3.0.1",
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
-    "karma-sinon-chai": "^0.3.0",
     "mocha": "^2.0.1",
     "protractor": "^1.6.1",
     "run-sequence": "^1.0.2",
-    "sinon": "^1.12.2",
-    "sinon-chai": "^2.6.0",
-    "supertest": "^0.15.0",
     "through2": "^0.6.3",
     "vinyl-transform": "^1.0.0",
     "watchify": "^2.3.0",
@@ -63,7 +59,11 @@
     "koa-router": "^3.8.0",
     "moment": "^2.9.0",
     "mongoose": "^3.8.22",
-    "logentries-logformat": "^0.0.2"
+    "logentries-logformat": "^0.0.2",
+    "sinon": "^1.12.2",
+    "sinon-chai": "^2.6.0",
+    "karma-sinon-chai": "^0.3.0",
+    "supertest": "^0.15.0"
   },
   "scripts": {
     "test": "gulp test"
