@@ -1,4 +1,4 @@
-js-stack.boilerplate
+js-stack.boilerplate [ ![Codeship Status for emartech/js-stack.boilerplate](https://codeship.com/projects/78587710-a05e-0132-ffeb-3ee0debf623a/status?branch=master)](https://codeship.com/projects/65400)
 ==============
 
 Technology
