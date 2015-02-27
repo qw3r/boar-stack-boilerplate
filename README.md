@@ -1,4 +1,4 @@
-js-boilerplate
+js-stack.boilerplate
 ==============
 
 Technology
