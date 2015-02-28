@@ -2,7 +2,7 @@
 
 var server = require('../../../../server');
 var expect = require('chai').expect;
-var FakeContext = require('js-stack').mocks.context;
+var FakeContext = require('js-stack.mocks').context;
 var GetListJsonAction = require('./get.json');
 
 describe('Main Controller List GET JSON Action', function(){
