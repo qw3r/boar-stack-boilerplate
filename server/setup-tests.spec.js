@@ -6,6 +6,8 @@ var chai = require('chai');
 var sinonChai = require('sinon-chai');
 var chaiSubset = require('chai-subset');
 var chaiAsPromised = require('chai-as-promised');
+var mongoose = require('mongoose');
+var config = require('./config');
 
 before(function () {
   chai.use(chaiAsPromised);
@@ -22,14 +24,16 @@ before(function () {
 });
 
 
-beforeEach(function () {
+beforeEach(function (done) {
   this.sandbox = sinon.sandbox.create();
   this.renderSpy = renderSpy;
   this.renderSpy.attach();
+  mongoose.connect(config.mongooseUri + '-test', done);
 });
 
 
-afterEach(function () {
+afterEach(function (done) {
   this.sandbox.restore();
   this.renderSpy.restore();
+  mongoose.disconnect(done);
 });
