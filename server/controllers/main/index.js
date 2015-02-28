@@ -1,6 +1,6 @@
 'use strict';
 
-var ControllerFactory = require('../../lib/controller-factory');
+var ControllerFactory = require('js-stack').lib.controllerFactory;
 
 module.exports = ControllerFactory.create(function(router) {
 

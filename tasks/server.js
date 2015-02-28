@@ -15,7 +15,10 @@ module.exports = function (gulp, config) {
         ext: 'js jade',
         watch: [config.build.distPath],
         delay: 1,
-        env: {'NODE_ENV': 'development'},
+        env: {
+          'NODE_ENV': 'development',
+          'APP_ROOT_PATH': './' + config.build.distPath,
+        },
         nodeArgs: ['--harmony']
       });
     },
@@ -35,7 +38,7 @@ module.exports = function (gulp, config) {
 
       return gulp.src('', {read: false})
         .pipe(plumber())
-        .pipe(exec('NODE_ENV=test node_modules/mocha/bin/mocha --reporter dot --harmony --colors --require co-mocha "' + config.server.path + '**/*.spec.js"'))
+        .pipe(exec('APP_ROOT_PATH=./'+ config.server.path + ' NODE_ENV=test node_modules/mocha/bin/mocha --reporter dot --harmony --colors --require co-mocha "' + config.server.path + '**/*.spec.js"'))
         .pipe(exec.reporter(reportOptions));
     },
 
