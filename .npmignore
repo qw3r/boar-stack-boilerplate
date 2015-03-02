@@ -1,0 +1,8 @@
+client
+server
+dist
+e2e
+node_modules
+gulpfile.js
+karma.conf.js
+protractor.conf.js

@@ -10,43 +10,22 @@ var browserify = require('browserify');
 var uglify = require('gulp-uglify');
 var transform = require('vinyl-transform');
 var karma = require('karma').server;
-var Q = require('q');
-var fs = require('fs');
-
-var config = require('./config');
+var through2 = require('through2');
+var concat = require('gulp-concat');
+var jade = require('gulp-jade');
+var jshint = require('gulp-jshint');
+var templateCache = require('gulp-angular-templatecache');
 
 var isProduction = argv.production;
 
-module.exports = function(gulp) {
+module.exports = function (gulp, config) {
   return {
-    copyStatic: function() {
+    copyStatic: function () {
       return gulp.src(config.client.static.copyPattern)
         .pipe(gulp.dest(config.client.static.target));
     },
 
-    copyVendor: function() {
-      var deferred = Q.defer();
-
-      config.client.static.vendors.forEach(function(moduleName)
-      {
-        var sourcePath = 'node_modules/'+moduleName;
-
-        if (fs.existsSync(sourcePath+'/dist')) {
-          sourcePath += '/dist';
-        }
-
-        sourcePath += '/**/*';
-
-        var stream = gulp.src(sourcePath)
-          .pipe(gulp.dest(config.client.static.target + '/' + moduleName));
-
-        deferred.resolve(stream);
-      });
-
-      return deferred.promise;
-    },
-
-    buildStylesheets: function() {
+    buildStylesheets: function () {
       return gulp.src(config.client.stylesheets.buildPattern)
         .pipe(plumber())
         .pipe(gulpif(!isProduction, sourcemaps.init()))
@@ -54,13 +33,31 @@ module.exports = function(gulp) {
           use: nib(),
           compress: isProduction
         }))
-        .pipe(gulpif(!isProduction, sourcemaps.write(config.client.externalSourceMap ? '.' : null)))
+        .pipe(gulpif(
+          !isProduction,
+          sourcemaps.write(config.client.externalSourceMap ? '.' : null)
+        ))
         .pipe(plumber.stop())
         .pipe(gulp.dest(config.client.stylesheets.target));
     },
 
-    buildScripts: function() {
-      var browserified = transform(function(filename) {
+    buildViews: function () {
+      return gulp.src(config.client.app.viewPattern)
+        .pipe(jade({
+          pretty: true
+        }))
+        .pipe(templateCache(
+          'templates.js',
+          {
+            root: 'views/',
+            standalone: true
+          }
+        ))
+        .pipe(gulp.dest(config.client.app.target));
+    },
+
+    buildScripts: function () {
+      var browserified = transform(function (filename) {
         var b = browserify({
           entries: [filename],
           debug: !isProduction
@@ -68,18 +65,47 @@ module.exports = function(gulp) {
         return b.bundle();
       });
 
-      return gulp.src([config.client.app.buildPattern, '!**/*.spec.*'])
+      return gulp.src([config.client.app.buildPattern])
         .pipe(plumber())
         .pipe(browserified)
-        .pipe(gulpif(isProduction, uglify({ mangle: false })))
+        .pipe(gulpif(isProduction, uglify({mangle: false})))
         .pipe(gulp.dest(config.client.app.target));
     },
 
-    test: function(done) {
+    buildVendors: function () {
+      return gulp.src([config.client.app.vendorPattern])
+        .pipe(plumber())
+        .pipe(through2.obj(function (file, enc, next) {
+          browserify(file.path)
+            .transform('browserify-shim')
+            .require(config.client.app.vendors)
+            .bundle(function (err, res) {
+              file.contents = res;
+              next(null, file);
+            });
+        }))
+        .pipe(gulp.dest(config.client.app.target));
+    },
+
+    concatVendors: function () {
+      return gulp.src(config.client.vendors)
+        .pipe(plumber())
+        .pipe(concat('vendors.js'))
+        .pipe(gulpif(isProduction, uglify({mangle: false})))
+        .pipe(gulp.dest(config.client.app.target));
+    },
+
+    test: function (done) {
       karma.start({
         configFile: __dirname + '/../karma.conf.js',
         singleRun: true
       }, done);
+    },
+
+    jshint: function() {
+      return gulp.src(config.client.app.watchPattern)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
     }
   };
 };

@@ -5,39 +5,47 @@ var gulpif = require('gulp-if');
 var changed = require('gulp-changed');
 var exec = require('gulp-exec');
 var plumber = require('gulp-plumber');
+var jshint = require('gulp-jshint');
 
-var config = require('./config');
-
-module.exports = function(gulp) {
+module.exports = function (gulp, config) {
   return {
-    start: function() {
+    start: function () {
       nodemon({
         script: config.server.runnable,
-        ext: ['js', 'jade'],
+        ext: 'js jade',
         watch: [config.build.distPath],
-        ignore: ['node_modules/**'],
         delay: 1,
+        env: {
+          'NODE_ENV': 'development',
+          'APP_ROOT_PATH': './' + config.build.distPath,
+        },
         nodeArgs: ['--harmony']
       });
     },
 
-    copy: function(onlyChanged) {
+    copy: function (onlyChanged) {
       return gulp.src(config.server.filePattern)
         .pipe(gulpif(onlyChanged, changed(config.build.distPath)))
         .pipe(gulp.dest(config.build.distPath));
     },
 
-    test: function() {
+    test: function () {
       var reportOptions = {
-        err: true,
+        err: false,
         stderr: true,
         stdout: true
       };
 
       return gulp.src('', {read: false})
         .pipe(plumber())
-        .pipe(exec('NODE_ENV=test node_modules/mocha/bin/mocha --reporter dot --harmony --colors --require co-mocha "' + config.server.path + '**/*.spec.js"'))
+        .pipe(exec('APP_ROOT_PATH=./'+ config.server.path + ' NODE_ENV=test node_modules/mocha/bin/mocha --reporter dot --harmony --colors --require co-mocha "' + config.server.path + '**/*.spec.js"'))
         .pipe(exec.reporter(reportOptions));
+    },
+
+    jshint: function() {
+      return gulp.src(config.server.watchPattern)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
     }
-  }
+  };
 };

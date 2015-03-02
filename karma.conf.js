@@ -1,13 +1,13 @@
 var taskConfig = require('./tasks/config');
 var _ = require('lodash');
+var gulpConfig = require('./tasks/config');
 
 module.exports = function(config) {
   var configHash = {
-    files: [
-      'node_modules/angular/angular.js',
+    files: gulpConfig.client.vendors.concat([
       'node_modules/angular-mocks/angular-mocks.js',
       taskConfig.client.app.testPattern
-    ],
+    ]),
     preprocessors: {}
   };
 

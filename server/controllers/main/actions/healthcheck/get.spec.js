@@ -4,7 +4,6 @@ var server = require('../../../../server');
 var request = require('supertest');
 var Healthcheck = require('../../../../models/healthcheck');
 
-
 describe('Main Controller Healthceck GET Action', function() {
 
   it('should respond with proper message and code if everything went fine', function(done) {
@@ -13,7 +12,7 @@ describe('Main Controller Healthceck GET Action', function() {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect({success: true})
-      .end(done)
+      .end(done);
   });
 
 
@@ -27,7 +26,7 @@ describe('Main Controller Healthceck GET Action', function() {
       .expect(500)
       .expect('Content-Type', /json/)
       .expect({success: false})
-      .end(done)
+      .end(done);
   });
 
 
