@@ -31,7 +31,7 @@
     "del": "^1.1.1",
     "gulp": "3.8.10",
     "js-stack.mocks": "0.0.6",
-    "js-stack.tasks": "0.0.16",
+    "js-stack.tasks": "0.0.17",
     "mongoose": "^3.8.24",
     "protractor": "^1.6.1",
     "run-sequence": "^1.0.2",
