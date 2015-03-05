@@ -1,4 +1,4 @@
-js-stack.boilerplate [ ![Codeship Status for emartech/boar-stack-boilerplate](https://codeship.com/projects/4c68e380-a563-0132-b7bf-4a976f6052ef/status?branch=master)](https://codeship.com/projects/66675)
+boar-stack-boilerplate [ ![Codeship Status for emartech/boar-stack-boilerplate](https://codeship.com/projects/4c68e380-a563-0132-b7bf-4a976f6052ef/status?branch=master)](https://codeship.com/projects/66675)
 ==============
 
 Technology
