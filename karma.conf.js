@@ -1,4 +1,4 @@
-var tasks = require('js-stack.tasks');
+var tasks = require('boar-tasks');
 
 module.exports = function(config) {
   var configHash = tasks.getKarmaConfig({});

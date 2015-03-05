@@ -3,7 +3,7 @@
 var expect = require('chai').expect;
 var MainController = require('./').Controller;
 var ControllerFactory = require('./').Factory;
-var routerMock = require('js-stack.mocks').router.create();
+var routerMock = require('boar-stack-mocks').router.create();
 
 
 describe('Admin main Controller', function () {

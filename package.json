@@ -1,5 +1,5 @@
 {
-  "name": "js-boilerplate",
+  "name": "boar-stack-boilerplate",
   "version": "0.0.1",
   "description": "",
   "main": "./index.js",
@@ -13,40 +13,40 @@
     "angular": "global:angular"
   },
   "dependencies": {
-    "js-stack": "0.0.8",
+    "boar-stack": "0.1.0",
     "koa": "^0.16.0",
     "koa-router": "^3.8.0",
     "moment": "^2.9.0",
     "logentries-logformat": "^0.0.2"
   },
   "devDependencies": {
-    "6to5ify": "^4.0.0",
-    "angular": "^1.3.12",
-    "angular-mocks": "^1.3.12",
-    "bootstrap-stylus": "^0.2.1",
-    "browserify-shim": "^3.8.2",
-    "chai-as-promised": "^4.2.0",
-    "chai-subset": "^0.3.0",
+    "6to5ify": "4.0.0",
+    "angular": "1.3.12",
+    "angular-mocks": "1.3.12",
+    "bootstrap-stylus": "0.2.1",
+    "browserify-shim": "3.8.3",
+    "chai-as-promised": "4.2.0",
+    "chai-subset": "0.3.0",
     "gulp": "3.8.10",
-    "js-stack.mocks": "0.0.6",
-    "js-stack.tasks": "0.0.18",
-    "mongoose": "^3.8.24",
-    "protractor": "^1.6.1",
-    "run-sequence": "^1.0.2",
-    "sinon-chai": "^2.6.0",
-    "supertest": "^0.15.0"
+    "boar-stack-mocks": "0.1.1",
+    "boar-tasks": "0.1.1",
+    "mongoose": "3.8.24",
+    "protractor": "1.6.1",
+    "run-sequence": "1.0.2",
+    "sinon-chai": "2.7.0",
+    "supertest": "0.15.0"
   },
   "scripts": {
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/emartech/js-boilerplate.git"
+    "url": "https://github.com/emartech/boar-stack-boilerplate.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/emartech/js-boilerplate/issues"
+    "url": "https://github.com/emartech/boar-stack-boilerplate/issues"
   },
-  "homepage": "https://github.com/emartech/js-boilerplate"
+  "homepage": "https://github.com/emartech/boar-stack-boilerplate"
 }

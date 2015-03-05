@@ -1,6 +1,6 @@
 'use strict';
 
-var realIpAddress = require('js-stack').lib.realIpAddress;
+var realIpAddress = require('boar-stack').lib.realIpAddress;
 var logger = require('logentries-logformat')('main');
 
 

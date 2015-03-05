@@ -1,7 +1,7 @@
 'use strict';
 
 var sinon = require('sinon');
-var renderSpy = require('js-stack.mocks').render;
+var renderSpy = require('boar-stack-mocks').render;
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
 var chaiSubset = require('chai-subset');

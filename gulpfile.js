@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var config = require('./tasks.config');
-var tasks = require('js-stack.tasks').getTasks(gulp, config);
+var tasks = require('boar-tasks').getTasks(gulp, config);
 
 gulp.task('build', ['build-clean'], function(cb) {
   runSequence([
