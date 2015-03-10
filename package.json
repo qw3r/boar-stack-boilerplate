@@ -37,7 +37,8 @@
     "sinon-chai": "2.7.0"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "node --harmony server.js"
   },
   "repository": {
     "type": "git",
