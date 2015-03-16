@@ -3,10 +3,11 @@ var path = require('path');
 var koaApp = module.exports = koa();
 var config = require('./config');
 var App = require('boar-stack').app;
+var mongoose = require('mongoose');
 
 
 var app = new App(koaApp);
-app.connectToMongoose(config.mongooseUri);
+mongoose.connect(config.mongooseUri);
 app.addDynamicViewMiddleware(path.join(config.root, '/views'), config.env === 'development');
 app.addStaticContentMiddleware(path.join(config.root, '/assets'));
 app.addHookMiddleware();

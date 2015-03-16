@@ -24,16 +24,14 @@ before(function () {
 });
 
 
-beforeEach(function (done) {
+beforeEach(function () {
   this.sandbox = sinon.sandbox.create();
   this.renderSpy = renderSpy;
   this.renderSpy.attach();
-  mongoose.connect(config.mongooseUri + '-test', done);
 });
 
 
-afterEach(function (done) {
+afterEach(function () {
   this.sandbox.restore();
   this.renderSpy.restore();
-  mongoose.disconnect(done);
 });
