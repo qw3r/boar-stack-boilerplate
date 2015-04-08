@@ -17,6 +17,7 @@
     "koa": "0.18.1",
     "koa-router": "4.2.0",
     "logentries-logformat": "0.0.2",
+    "mongoose": "3.8.25",
     "moment": "2.9.0"
   },
   "devDependencies": {
@@ -31,7 +32,6 @@
     "chai-subset": "0.3.0",
     "co-supertest": "0.0.8",
     "gulp": "3.8.11",
-    "mongoose": "3.8.25",
     "protractor": "1.8.0",
     "run-sequence": "1.0.2",
     "sinon-chai": "2.7.0"
