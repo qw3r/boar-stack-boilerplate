@@ -54,13 +54,14 @@ gulp.task('client-build-static', function () { return tasks.client.copyStatic();
 gulp.task('client-build-vendor', function() { return tasks.client.concatVendors(); });
 gulp.task('client-build-vendor-alt', function() { return tasks.client.buildVendors(); });
 gulp.task('client-build-scripts', function() { return tasks.client.buildScripts(); });
+gulp.task('client-build-scripts-deny-errors', function() { return tasks.client.buildScriptsDenyErrors(); });
 gulp.task('client-build-stylesheets', function() { return tasks.client.buildStylesheets(); });
 gulp.task('client-build-views', function() { return tasks.client.buildViews(); });
 gulp.task('client-jshint', function() { return tasks.client.jshint(); });
 
 gulp.task('client-watch', function() {
   gulp.watch(tasks.config.client.static.watchPattern, ['client-build-static']);
-  gulp.watch(tasks.config.client.app.watchPattern, ['client-build-scripts']);
+  gulp.watch(tasks.config.client.app.watchPattern, ['client-build-scripts-deny-errors']);
   gulp.watch(tasks.config.client.stylesheets.watchPattern, ['client-build-stylesheets']);
   gulp.watch(tasks.config.client.app.viewPattern, ['client-build-views']);
 });
