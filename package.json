@@ -49,5 +49,8 @@
   "bugs": {
     "url": "https://github.com/emartech/boar-stack-boilerplate/issues"
   },
+  "engines": {
+    "iojs": "1.6.4"
+  },
   "homepage": "https://github.com/emartech/boar-stack-boilerplate"
 }
