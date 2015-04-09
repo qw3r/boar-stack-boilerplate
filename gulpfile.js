@@ -17,7 +17,7 @@ gulp.task('start', ['build'], function() {
   gulp.run('client-watch');
 });
 
-gulp.task('test', ['server-test', 'client-test']);
+gulp.task('test', ['server-test', 'client-test', 'server-jshint', 'client-jshint']);
 
 
 
