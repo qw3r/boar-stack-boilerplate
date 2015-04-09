@@ -34,7 +34,7 @@ gulp.task('server-copy', function() { return tasks.server.copy(false); });
 gulp.task('server-copy-only-changed', function () {
   return tasks.server.copy(true);
 });
-gulp.task('server-jshint', function() { return tasks.client.jshint(); });
+gulp.task('server-jshint', function() { return tasks.server.jshint(); });
 gulp.task('server-watch', function() {
   gulp.watch(tasks.config.server.filePattern, ['server-copy-only-changed']);
 });
