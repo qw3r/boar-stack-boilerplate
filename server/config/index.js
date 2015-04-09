@@ -7,7 +7,7 @@ module.exports = {
   ip: process.env.IP || undefined,
   port: process.env.PORT || 3000,
   mongooseUri: process.env.MONGOLAB_URI ||
-               process.env.MONGOHQ_URL ||
-               process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME ||  'mongodb://localhost/jsboilerplate'
-
+    process.env.MONGOHQ_URL ||
+    process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME ||
+    'mongodb://localhost/jsboilerplate'
 };

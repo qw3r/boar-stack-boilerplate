@@ -15,7 +15,7 @@ GetListJsonAction.prototype = {
   process: function* () {
     logger.log('getListJson', { userIp: realIpAddress(this.request) });
 
-    this.context.body = {
+    this.context.body = yield {
       admins: this._getAdmins()
     };
   },
