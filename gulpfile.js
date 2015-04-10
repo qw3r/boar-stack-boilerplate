@@ -69,5 +69,11 @@ gulp.task('client-watch', function() {
 gulp.task('client-test', tasks.client.test);
 
 // End to End Tasks
-gulp.task('e2e-test', tasks.e2e.test);
-gulp.task('update-webdriver', tasks.e2e.updateWebDriver);
+gulp.task('e2e-run', function(done) {
+  tasks.e2e.test(done)
+});
+gulp.task('e2e', ['build'], function() {
+  gulp.run('server');
+  gulp.run('e2e-run');
+});
+gulp.task('e2e-update-webdriver', tasks.e2e.updateWebDriver);
