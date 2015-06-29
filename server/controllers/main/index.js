@@ -10,4 +10,8 @@ module.exports = ControllerFactory.create(function(router) {
 
   router.get('/list', ControllerFactory.loadByAcceptType('main/actions/list/get'));
 
+  router.get('/chart', ControllerFactory.loadByAcceptType('main/actions/chart/get'));
+
+  router.get('/sell-statistics', ControllerFactory.load('main/actions/chart/getData'));
+
 });
