@@ -1,0 +1,10 @@
+extends layout
+
+block body
+  div(ng-controller="ChartController as ctrl")
+
+     highchart.trends-chart(config="ctrl.chartConfig")
+
+block body_bottom
+  script(src="/scripts/templates.js")
+  script(src="/scripts/chart.js")
