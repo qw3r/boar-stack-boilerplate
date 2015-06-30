@@ -10,7 +10,8 @@ module.exports = {
       'node_modules/angular/angular.js',
       'bower_components/jquery/dist/jquery.js',
       'bower_components/highcharts/highcharts.js',
-      'bower_components/highcharts-ng/dist/highcharts-ng.js'
+      'bower_components/highcharts-ng/dist/highcharts-ng.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
     ],
     app: {
       testModules: [

@@ -2,8 +2,9 @@ extends layout
 
 block body
   div(ng-controller="ChartController as ctrl")
+     datepicker(ng-model="ctrl.dateFilter", min-date="ctrl.minDate", show-weeks="false", class="well well-sm")
 
-     highchart.trends-chart(config="ctrl.chartConfig")
+     chart(chart-config="ctrl.chartConfig",  data="ctrl.seriesData")
 
 block body_bottom
   script(src="/scripts/templates.js")

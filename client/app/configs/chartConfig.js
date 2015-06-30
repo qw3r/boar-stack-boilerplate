@@ -15,7 +15,20 @@ module.exports =  {
   title: {
      text: 'Trends'
   },
-  series: [],
+  series: [
+    {
+        name: 'sells 1',
+        color: '#990000',
+        dataType: 'value',
+        visible: true
+    },
+    {
+        name: 'sells 2',
+        color: '#000099',
+        dataType: 'value2',
+        visible: true
+    }
+  ],
   loading: true,
   xAxis: {
     title: {text: 'Dates'},
@@ -24,8 +37,5 @@ module.exports =  {
   yAxis: {
     title: {text: 'Sell numbers'}
   },
-  useHighStocks: false,
-  func (chart) {
-   //setup some logic for the chart
-  }
+  useHighStocks: false
 };

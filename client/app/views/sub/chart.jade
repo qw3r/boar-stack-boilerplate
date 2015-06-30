@@ -1,0 +1,6 @@
+.chart
+   highchart.trends-chart(config="config()")
+
+   .series-selectors(ng-repeat="series in config().series")
+      .name {{::series.name}}
+      input(type="checkbox", ng-model="series.visible")
