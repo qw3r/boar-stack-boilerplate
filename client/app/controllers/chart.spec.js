@@ -1,32 +1,28 @@
 'use strict';
 
 var ChartController = require('./chart');
-var Promise = require('bluebird');
-// var SellStatistics = require('../services/sellStatistics');
+var sinon = require('sinon');
 
 describe('ChartController', () => {
 
-    var subject, $scope, $timeout;
+    var subject, deferred, $scope;
 
     var sells = [
         {creationDate: (new Date('2015-05-05')).valueOf(), value: 3000, value2: 5},
         {creationDate: (new Date('2015-05-10')).valueOf(), value: 1000, value2: 7}
     ];
 
-    var sellsRequestResult = [
-        [sells[0].creationDate, sells[0].value, sells[0].value2],
-        [sells[1].creationDate, sells[1].value, sells[1].value2]
-    ];
-
     var sellStatistics = {
         getData() {
-            return Promise.resolve(sells);
+            return deferred.promise;
         }
     };
 
     beforeEach(inject(($injector, $rootScope) => {
         $scope = $rootScope.$new();
-        $timeout = $injector.get('$timeout');
+        var $timeout = $injector.get('$timeout');
+        var $q = $injector.get('$q');
+        deferred = $q.defer();
         subject = new ChartController($scope, $timeout, sellStatistics);
     }));
 
@@ -38,43 +34,27 @@ describe('ChartController', () => {
         expect(subject.chartConfig.loading).to.be.true;
     });
 
-    it('should modify the result after getting data to highCharts config', () => {
-        expect(subject.loadData()).to.eventually.eql(11);
-        // subject.loadData().then((result) => {
-        //     expect(result).to.eql(sells);
-        //     done();
-        // });
-    });
+    describe('loadData()', () => {
+        it('should call sellStatistics.getData() with dateFilter', () => {
+            var spy = sinon.spy(sellStatistics, 'getData');
+            subject.dateFilter = new Date('2015-05-07');
+            subject.loadData();
+            expect(spy).to.have.been.calledWith(subject.dateFilter);
+        });
 
-    it.only('should modify highCharts\' config', () => {
-        expect(subject.chartConfig.loading).to.be.true;
-        subject.loadData().then((res) => {
-            console.log('aaa')
+        it('should change the loading flag to true if request fails', () => {
+            deferred.reject();
+            subject.chartConfig.loading = false;
+            subject.loadData();
+            $scope.$apply();
+            expect(subject.chartConfig.loading).to.be.true;
+        });
+
+        it('should set seriesData', () => {
+            deferred.resolve(sells);
+            subject.loadData();
+            $scope.$apply();
             expect(subject.seriesData).to.eql(sells);
-            expect(subject.chartConfig.loading).to.be.false;
-            // done();
-        })
-        // .catch(done);
-    });
-
-    it.only('modifying dateFilter should call loadData()', (done) => {
-        subject.loadData().then(() => {
-            expect(subject.seriesData.length).to.eql(2);
-            subject.dateFilter = new Date('2015-05-06');
-            // expect(subject.loadData).to.have.been.called;
-            done();
-        })
-        .catch(done);
-    });
-
-    it('modifying dateFilter should change highCharts\' series', (done) => {
-        subject.loadData().then(() => {
-            expect(subject.seriesData.length).to.eql(2);
-            subject.dateFilter = new Date('2015-05-06');
-            
-            // expect(subject.chartConfig.series.data[0]).to.eql([sells[0].]);
-            done();
-        })
-        .catch(done);
+        });
     });
 });

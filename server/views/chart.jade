@@ -2,7 +2,13 @@ extends layout
 
 block body
   div(ng-controller="ChartController as ctrl")
-     datepicker(ng-model="ctrl.dateFilter", min-date="ctrl.minDate", show-weeks="false", class="well well-sm")
+    .row
+      .col-lg-6
+         .input-group
+             input.form-control(type='text' ng-model='ctrl.dateFilter' is-open='ctrl.opened' min-date='ctrl.minDate' datepicker-popup="yyyy-MM-dd" datepicker-options='ctrl.dateOptions' date-disabled='disabled(date, mode)' ng-required='true' close-text='Close' ng-blur="ctrl.loadData()")
+             span.input-group-btn
+               button.open-datepicker.btn.btn-default(type='button', ng-click='ctrl.open($event)')
+                 i.glyphicon.glyphicon-calendar
 
      chart(chart-config="ctrl.chartConfig",  data="ctrl.seriesData")
 

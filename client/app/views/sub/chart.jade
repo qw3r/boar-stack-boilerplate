@@ -1,6 +1,9 @@
-.chart
-   highchart.trends-chart(config="config()")
+.chart.container-fluid
+    .col-xs-10
+        highchart.trends-chart(config="config()")
 
-   .series-selectors(ng-repeat="series in config().series")
-      .name {{::series.name}}
-      input(type="checkbox", ng-model="series.visible")
+    .col-xs-2.chart-legend
+       .series-selectors.container-fluid(ng-repeat="series in config().series")
+          input.col-xs-1(type="checkbox", ng-model="series.visible")
+
+          .name.col-xs-11 {{::series.name}}

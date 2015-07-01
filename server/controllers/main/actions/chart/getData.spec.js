@@ -1,13 +1,11 @@
 'use strict';
 
-var server = require('../../../../server');
 var sellModel = require('../../../../models/sellStatistic');
-var request = require('supertest');
 var expect = require('chai').expect;
 var FakeContext = require('boar-stack-mocks').context;
 var getData = require('./getData');
 var sinon = require('sinon');
-var Promise = require('bluebird');
+var bluebird = require('bluebird');
 
 
 describe('Main Controller Chart GET Data Action', function(){
@@ -21,7 +19,7 @@ describe('Main Controller Chart GET Data Action', function(){
 
   it('should respond with correct sell statistics format', function* () {
     var sells = [{creationDate: new Date('2015-05-05'), value: 1000}];
-    sellModel.findOrdered.returns(Promise.resolve(sells));
+    sellModel.findOrdered.returns(bluebird.resolve(sells));
     var context = FakeContext.create();
 
     context.request = {

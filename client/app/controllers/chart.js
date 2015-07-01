@@ -10,21 +10,27 @@ class ChartController {
 
     this.dateFilter = new Date('2015.01.01');
     this.minDate = this.dateFilter;
+    this.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1
+    };
+    this.opened = false;
+    this.open = (event) => {
+      event.stopPropagation();
+      this.opened = !this.opened;
+    };
+
 
     $timeout(() => {
       this.loadData();
     }, 1000);
-
-    $scope.$watch('ctrl.dateFilter', this.loadData.bind(this));
   }
 
   loadData() {
     this.chartConfig.loading = true;
-    return this.sellStatistics.getData(this.dateFilter).then((result) => {
+    this.sellStatistics.getData(this.dateFilter).then((result) => {
       this.seriesData = result;
       this.chartConfig.loading = false;
-
-      return this.seriesData;
     });
   }
 }

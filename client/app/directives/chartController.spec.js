@@ -6,23 +6,25 @@ describe('ChartDirectiveController', () => {
 
     var subject, $scope;
 
-    var data = [
-        {
-            value: 500,
-            creationDate: 1423695600000,
-            value2: 450
-        },
-        {
-            value: 3000,
-            creationDate: 1430784000000,
-            value2: 900
-        },
-        {
-            value: 1000,
-            creationDate: 1431216000000,
-            value2: 15
-        }
-    ];
+    var data = {
+        data: [
+            {
+                value: 500,
+                creationDate: 1423695600000,
+                value2: 450
+            },
+            {
+                value: 3000,
+                creationDate: 1430784000000,
+                value2: 900
+            },
+            {
+                value: 1000,
+                creationDate: 1431216000000,
+                value2: 15
+            }
+        ]
+    };
 
     beforeEach(inject(($injector, $rootScope) => {
         $scope = $rootScope.$new();
@@ -52,7 +54,9 @@ describe('ChartDirectiveController', () => {
 
     it('buildSeriesConfig should build the series\' data from $scope.config().series', () => {
         subject.buildSeriesConfig(data);
-        expect($scope.config().series[0].data).to.eql([[data[0].creationDate, data[0].value], [data[1].creationDate, data[1].value], [data[2].creationDate, data[2].value]]);
-        expect($scope.config().series[1].data).to.eql([[data[0].creationDate, data[0].value2], [data[1].creationDate, data[1].value2], [data[2].creationDate, data[2].value2]]);
+        var exp1 = [[data.data[0].creationDate, data.data[0].value], [data.data[1].creationDate, data.data[1].value], [data.data[2].creationDate, data.data[2].value]];
+        var exp2 = [[data.data[0].creationDate, data.data[0].value2], [data.data[1].creationDate, data.data[1].value2], [data.data[2].creationDate, data.data[2].value2]];
+        expect($scope.config().series[0].data).to.eql(exp1);
+        expect($scope.config().series[1].data).to.eql(exp2);
     });
 });

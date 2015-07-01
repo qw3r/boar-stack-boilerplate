@@ -1,7 +1,7 @@
 'use strict';
 
 var SellStatistics = require('./sellStatistics');
-var chaiAsPromised = require("chai-as-promised");
+var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 describe('SellStatistics', () => {

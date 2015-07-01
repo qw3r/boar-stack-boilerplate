@@ -1,13 +1,13 @@
 exports.config = {
     // A base URL for your application under test. Calls to protractor.get()
     // with relative paths will be prepended with this.
-    baseUrl: 'http://localhost:3000',// + process.env.PORT || 3000,
+    baseUrl: 'http://localhost:' + (process.env.PORT || '9100'),
 
 
     // Spec patterns are relative to the location of this config.
     specs: [
         // gulp will handle specs by passing them in arguments
-        //"./e2e/*.spec.js"
+        "./e2e/*.spec.js"
     ],
 
     // Patterns to exclude.
@@ -16,7 +16,7 @@ exports.config = {
     // Jasmine is fully supported as a test and assertion framework.
     // Mocha and Cucumber have limited beta support. You will need to include your
     // own assertion framework (such as Chai) if working with Mocha.
-    framework: 'jasmine',
+    framework: 'jasmine2',
 
     // Options to be passed to minijasminenode.
     //

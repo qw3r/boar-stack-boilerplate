@@ -11,7 +11,7 @@ class ChartController {
 		});
 
 		function createSeries (name, color, dataType) {
-		  var seriesData = data.map((item) => {
+		  var seriesData = data.data.map((item) => {
 		    return [(new Date(item.creationDate)).valueOf(), item[dataType]];
 		  });
 		  return seriesData;

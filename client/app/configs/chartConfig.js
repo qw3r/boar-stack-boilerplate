@@ -10,6 +10,9 @@ module.exports =  {
               padding: 10,
               fontWeight: 'bold'
           }
+      },
+      legend: {
+          enabled: false
       }
   },
   title: {
